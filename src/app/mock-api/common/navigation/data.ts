@@ -63,7 +63,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         children: [
             {
                 id: 'users-staff',
-                title: 'Users (Staff)',
+                title: 'Ornafish Users',
                 type: 'basic',
                 icon: 'heroicons_outline:user',
                 link: '/backend/users',
