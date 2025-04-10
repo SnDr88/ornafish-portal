@@ -95,7 +95,7 @@
                             ],
                             "outputHashing": "all"
                         }
-                    }
+                    },
                     "defaultConfiguration": "production"
                 },
                 "serve": {
