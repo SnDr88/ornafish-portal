@@ -106,6 +106,9 @@
                         },
                         "development": {
                             "buildTarget": "ornafish-portal:build:development"
+                        },
+                        "staging": {
+                            "buildTarget": "ornafish-portal:build:staging"
                         }
                     },
                     "defaultConfiguration": "development"
