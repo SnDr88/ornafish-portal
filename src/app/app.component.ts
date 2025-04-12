@@ -14,3 +14,6 @@ export class AppComponent {
      */
     constructor() {}
 }
+
+// in je AppComponent of een zichtbaar component
+console.log('✅ Environment:', environment);
