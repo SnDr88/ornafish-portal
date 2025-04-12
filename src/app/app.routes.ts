@@ -75,6 +75,12 @@ export const appRoutes: Route[] = [
         },
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
+            
+            {
+                path: 'settings',
+                loadComponent: () =>
+                    import('app/pages/settings/settings.component').then((m) => m.SettingsComponent)
+            }
         ]
     }
 ];

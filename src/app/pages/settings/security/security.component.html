@@ -1,0 +1,64 @@
+<div class="w-full max-w-3xl">
+    <!-- Form -->
+    <form [formGroup]="securityForm">
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Change your password</div>
+        </div>
+        <div class="mt-8 grid w-full gap-6 sm:grid-cols-4">
+            <!-- Current password -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Current Password</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:key'" matPrefix></mat-icon>
+                    <input matInput [type]="showCurrent ? 'text' : 'password'" formControlName="currentPassword">
+                    <button mat-icon-button type="button" (click)="showCurrent = !showCurrent" matSuffix>
+                        <mat-icon class="icon-size-5" [svgIcon]="showCurrent ? 'heroicons_solid:eye-slash' : 'heroicons_solid:eye'"></mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        
+            <!-- New password -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>New Password</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:key'" matPrefix></mat-icon>
+                    <input matInput [type]="showNew ? 'text' : 'password'" formControlName="newPassword">
+                    <button mat-icon-button type="button" (click)="showNew = !showNew" matSuffix>
+                        <mat-icon class="icon-size-5" [svgIcon]="showNew ? 'heroicons_solid:eye-slash' : 'heroicons_solid:eye'"></mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        
+            <!-- Confirm new password -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Confirm New Password</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:key'" matPrefix></mat-icon>
+                    <input matInput [type]="showConfirm ? 'text' : 'password'" formControlName="confirmNewPassword">
+                    <button mat-icon-button type="button" (click)="showConfirm = !showConfirm" matSuffix>
+                        <mat-icon class="icon-size-5" [svgIcon]="showConfirm ? 'heroicons_solid:eye-slash' : 'heroicons_solid:eye'"></mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+       
+        
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button
+                class="ml-4"
+                mat-flat-button
+                type="button"
+                [color]="'primary'"
+            >
+                Save
+            </button>
+        </div>
+    </form>
+</div>

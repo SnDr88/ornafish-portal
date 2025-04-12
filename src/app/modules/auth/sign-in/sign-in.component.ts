@@ -17,6 +17,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'auth-sign-in',
@@ -53,8 +54,18 @@ export class AuthSignInComponent implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
-        private _router: Router
+        private _router: Router,
+        private _snackBar: MatSnackBar
     ) {}
+
+    showError(message: string): void {
+        this._snackBar.open(message, 'Close', {
+            duration: 4000,
+            panelClass: ['bg-red-600', 'text-white'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+        });
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -83,47 +94,36 @@ export class AuthSignInComponent implements OnInit {
      * Sign in
      */
     signIn(): void {
-        // Return if the form is invalid
         if (this.signInForm.invalid) {
+            const email = this.signInForm.get('email');
+            const password = this.signInForm.get('password');
+    
+            if (email?.hasError('required')) {
+                this.showError('Email is required');
+            } else if (email?.hasError('email')) {
+                this.showError('Please enter a valid email address');
+            } else if (password?.hasError('required')) {
+                this.showError('Password is required');
+            } else {
+                this.showError('Please fill in all required fields');
+            }
             return;
         }
-
-        // Disable the form
+    
         this.signInForm.disable();
-
-        // Hide the alert
-        this.showAlert = false;
-
-        // Sign in
+    
         this._authService.signIn(this.signInForm.value).subscribe(
             () => {
-                // Set the redirect url.
-                // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-                // to the correct page after a successful sign in. This way, that url can be set via
-                // routing file and we don't have to touch here.
                 const redirectURL =
-                    this._activatedRoute.snapshot.queryParamMap.get(
-                        'redirectURL'
-                    ) || '/signed-in-redirect';
-
-                // Navigate to the redirect url
+                    this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+    
                 this._router.navigateByUrl(redirectURL);
             },
-            (response) => {
-                // Re-enable the form
+            (error) => {
                 this.signInForm.enable();
-
-                // Reset the form
-                this.signInNgForm.resetForm();
-
-                // Set the alert
-                this.alert = {
-                    type: 'error',
-                    message: 'Wrong email or password',
-                };
-
-                // Show the alert
-                this.showAlert = true;
+                //this.signInNgForm.resetForm();
+    
+                this.showError('Login failed: Wrong email or password');
             }
         );
     }

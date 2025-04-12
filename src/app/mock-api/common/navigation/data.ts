@@ -7,7 +7,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Dashboard',
         type: 'basic',
         icon: 'heroicons_outline:adjustments-vertical',
-        link: '/dashboard',
+        link: '/',
+        exactMatch: true
     },
     
     {
@@ -22,6 +23,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:inbox-arrow-down',
                 link: '/crm/new-requests',
+                exactMatch: true
             },
             {
                 id: 'agents',
@@ -29,6 +31,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:identification',
                 link: '/crm/agents',
+                exactMatch: true
             },
             {
                 id: 'dealers',
@@ -37,6 +40,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: '',
                 iconHtml: '<i class="fa-thin fa-people-group fa-xl"></i>',
                 link: '/crm/dealers',
+                exactMatch: true
             },
             {
                 id: 'breeders',
@@ -45,6 +49,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: '',
                 iconHtml: '<i class="fa-thin fa-user-cowboy fa-xl ms-1 pe-1"></i>',
                 link: '/crm/breeders',
+                exactMatch: true
             },
             {
                 id: 'others',
@@ -52,6 +57,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:ellipsis-horizontal',
                 link: '/crm/others',
+                exactMatch: true
             },
         ]
     },
@@ -67,6 +73,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type: 'basic',
                 icon: 'heroicons_outline:user',
                 link: '/backend/users',
+                exactMatch: true
             }
         ]
     }
