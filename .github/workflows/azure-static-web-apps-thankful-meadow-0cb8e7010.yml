@@ -23,7 +23,7 @@ jobs:
         run: npm ci
         
       - name: Build Angular app for staging
-        run: npm run build -- --configuration=staging
+        run: npm run build:staging --if-present
         
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
@@ -34,7 +34,7 @@ jobs:
           action: "upload"
           app_location: "/"
           api_location: ""
-          output_location: "dist/fuse/browser/"
+          output_location: "dist/fuse/browser"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
