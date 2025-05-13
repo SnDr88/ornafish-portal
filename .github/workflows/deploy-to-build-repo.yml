@@ -32,7 +32,7 @@ jobs:
 
       - name: Push build to deploy repo
         run: |
-          cd dist/browser  # ← pas dit aan als jouw output folder anders heet
+          cd dist/fuse/browser  # ← pas dit aan als jouw output folder anders heet
 
           git init
           git config user.name "GitHub Actions"
