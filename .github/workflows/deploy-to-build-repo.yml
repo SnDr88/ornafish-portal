@@ -1,0 +1,51 @@
+name: Build and Deploy Angular App to Plesk Deploy Repo
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            npm run build -- --configuration production
+          else
+            npm run build
+          fi
+
+      - name: Push build to deploy repo
+        run: |
+          cd dist/browser  # ← pas dit aan als jouw output folder anders heet
+
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            git checkout -b main
+            git remote add origin https://x-access-token:${{ secrets.DEPLOY_REPO_TOKEN }}@github.com/SnDr88/ornafish-portal-deploy.git
+          else
+            git checkout -b dev
+            git remote add origin https://x-access-token:${{ secrets.DEPLOY_REPO_TOKEN }}@github.com/SnDr88/ornafish-portal-deploy.git
+          fi
+
+          git add .
+          git commit -m "Deploying from $GITHUB_REF"
+          git push --force origin HEAD
