@@ -10,7 +10,32 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link: '/',
         exactMatch: true
     },
-    
+    {
+        id: 'shipping',
+        title: 'SHIPPING',
+        type: 'group',
+        icon: 'heroicons_outline:user-group',
+        children: [
+            {
+                id: 'shipments',
+                title: 'Shipments',
+                type: 'basic',
+                icon: '',
+                iconHtml: '<i class="fa-thin fa-truck-ramp-couch fa-xl ms-1 pe-1"></i>',
+                link: '/shipping/shipments',
+                exactMatch: true
+            },
+            {
+                id: 'destinations',
+                title: 'Destinations',
+                type: 'basic',
+                icon: '',
+                iconHtml: '<i class="fa-thin fa-plane-arrival fa-xl ms-1 pe-1"></i>',
+                link: '/shipping/destinations',
+                exactMatch: true
+            }
+        ]
+    },
     {
         id: 'crm',
         title: 'CRM',
@@ -26,20 +51,12 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 exactMatch: true
             },
             {
-                id: 'agents',
-                title: 'Agents',
-                type: 'basic',
-                icon: 'heroicons_outline:identification',
-                link: '/crm/agents',
-                exactMatch: true
-            },
-            {
-                id: 'dealers',
-                title: 'Dealers',
+                id: 'customers',
+                title: 'Customers',
                 type: 'basic',
                 icon: '',
                 iconHtml: '<i class="fa-thin fa-people-group fa-xl"></i>',
-                link: '/crm/dealers',
+                link: '/crm/customers',
                 exactMatch: true
             },
             {

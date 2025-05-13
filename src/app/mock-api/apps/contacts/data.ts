@@ -4,7 +4,8 @@ export const contacts = [
         id: 'cd5fa417-b667-482d-b208-798d9da3213c',
         avatar: 'images/avatars/male-01.jpg',
         background: 'images/cards/14-640x480.jpg',
-        name: 'Dejesus Michael',
+        name: 'Sander Heijnen',
+        type: 'Agent',
         emails: [
             {
                 email: 'dejesusmichael@mail.org',

@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'settings-account',
@@ -44,7 +45,7 @@ export class SettingsAccountComponent implements OnInit {
     /**
      * Constructor
      */
-    constructor(private _formBuilder: UntypedFormBuilder, private _userService: UserService) {}
+    constructor(private _formBuilder: UntypedFormBuilder, private _userService: UserService, private _snackBar: MatSnackBar) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -69,9 +70,29 @@ export class SettingsAccountComponent implements OnInit {
                     first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email,
-                    //phone: user.phone || '', // optioneel
+                    phone: user.phone || '', // optioneel
                 });
             }
         });
     }
+
+    saveAccount(): void {
+        if (this.accountForm.invalid) return;
+
+        this._userService.update(this.accountForm.value).subscribe({
+            next: () => {
+                this._snackBar.open('Your profile has been updated', 'Close', {
+                    duration: 3000, horizontalPosition: 'center',
+            verticalPosition: 'top'
+                });
+            },
+            error: () => {
+                this._snackBar.open('Failed to update profile', 'Close', {
+                    duration: 3000, horizontalPosition: 'center',
+            verticalPosition: 'top'
+                });
+            },
+        });
+    }
+
     }

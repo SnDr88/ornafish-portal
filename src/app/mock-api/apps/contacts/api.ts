@@ -105,6 +105,7 @@ export class ContactsMockApi {
                     id: FuseMockApiUtils.guid(),
                     avatar: null,
                     name: 'New Contact',
+                    type: null,
                     emails: [],
                     phoneNumbers: [],
                     job: {

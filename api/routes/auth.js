@@ -20,7 +20,7 @@ router.post('/auth/sign-in-with-token', async (req, res) => {
         // 🧠 Haal volledige user info uit database
         const result = await pool
             .request()
-            .input('id', sql.Int, decoded.id)
+            .input('id', sql.UniqueIdentifier, decoded.id)
             .query('SELECT * FROM users WHERE id = @id');
 
         const user = result.recordset[0];
@@ -44,6 +44,7 @@ router.post('/auth/sign-in-with-token', async (req, res) => {
                 email: user.email,
                 first_name: user.first_name,
                 last_name: user.last_name,
+                phone: user.phone,
                 role_id: user.role_id,
                 company_id: user.company_id,
                 breeder_id: user.breeder_id

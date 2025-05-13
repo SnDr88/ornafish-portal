@@ -164,7 +164,7 @@ export class ECommerceInventoryMockApi {
                 const newProduct = {
                     id: FuseMockApiUtils.guid(),
                     category: '',
-                    name: 'A New Product',
+                    name: 'A New Destination',
                     description: '',
                     tags: [],
                     sku: '',

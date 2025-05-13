@@ -82,5 +82,47 @@ export const appRoutes: Route[] = [
                     import('app/pages/settings/settings.component').then((m) => m.SettingsComponent)
             }
         ]
+    },
+    {
+        path: 'shipping',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {
+                path: 'destinations',
+                loadChildren: () =>
+                    import('app/pages/shipping/shipping.routes').then(m => m.default)
+            }
+        ]
+    },
+    {
+        path: 'crm',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {
+                path: 'customers',
+                loadChildren: () =>
+                    import('app/pages/crm/customers/contacts.routes')
+            },
+            {
+                path: 'breeders',
+                loadChildren: () =>
+                    import('app/pages/crm/breeders/contacts.routes')
+            },
+            {
+                path: 'users',
+                loadChildren: () =>
+                    import('app/pages/crm/users/users.module').then(m => m.UsersModule)
+            }
+        ]
     }
 ];

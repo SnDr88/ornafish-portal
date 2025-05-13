@@ -3,10 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { User } from 'app/core/user/user.types';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
 
-
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    
     private _httpClient = inject(HttpClient);
     private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
 
@@ -49,10 +47,20 @@ export class UserService {
      * @param user
      */
     update(user: User): Observable<any> {
-        return this._httpClient.patch<User>('api/common/user', { user }).pipe(
-            map((response) => {
-                this._user.next(response);
-            })
-        );
+        return this._httpClient
+            .patch<{ message: string; user: User }>('/api/common/user', { user })
+            .pipe(
+                map((response) => {
+                    this._user.next(response.user); // ✅ hier extract je de juiste user
+                    return response.user;
+                })
+            );
+    }
+
+    changePassword(currentPassword: string, newPassword: string): Observable<any> {
+        return this._httpClient.patch('/api/common/password', {
+            currentPassword,
+            newPassword,
+        });
     }
 }

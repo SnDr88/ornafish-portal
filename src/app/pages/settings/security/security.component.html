@@ -41,6 +41,10 @@
                     </button>
                 </mat-form-field>
             </div>
+
+            <mat-error *ngIf="passwordsDoNotMatch && securityForm.get('confirmNewPassword')?.touched">
+                Passwords do not match
+            </mat-error>
         </div>
 
        
@@ -56,6 +60,8 @@
                 mat-flat-button
                 type="button"
                 [color]="'primary'"
+                (click)="savePassword()"
+                [disabled]="securityForm.invalid"
             >
                 Save
             </button>

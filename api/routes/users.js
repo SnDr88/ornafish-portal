@@ -7,9 +7,9 @@ const jwt = require('jsonwebtoken');
 
 // POST /api/users → nieuwe gebruiker aanmaken
 router.post('/', async (req, res) => {
-    const { email, password, first_name, last_name, role_id, company_id, breeder_id } = req.body;
+    const { email, password, first_name, last_name, phone, role_id, company_id, breeder_id } = req.body;
 
-    if (!email || !password || !first_name || !last_name || !role_id) {
+    if (!email || !password || !first_name || !last_name) {
         return res.status(400).json({ message: 'Email, password, first name, last name en role_id zijn verplicht.' });
     }
 
@@ -35,12 +35,12 @@ router.post('/', async (req, res) => {
             .input('password', sql.NVarChar, hashedPassword)
             .input('first_name', sql.NVarChar, first_name)
             .input('last_name', sql.NVarChar, last_name)
-            .input('role_id', sql.Int, role_id)
-            .input('company_id', sql.Int, company_id ?? null)
-            .input('breeder_id', sql.Int, breeder_id ?? null)
+            .input('phone', sql.NVarChar, phone)
+            .input('company_id', sql.UniqueIdentifier, company_id ?? null)
+            .input('breeder_id', sql.UniqueIdentifier, breeder_id ?? null)
             .query(`
-                INSERT INTO users (email, password, first_name, last_name, role_id, company_id, breeder_id)
-                VALUES (@email, @password, @first_name, @last_name, @role_id, @company_id, @breeder_id)
+                INSERT INTO users (email, password, first_name, last_name, phone, company_id, breeder_id)
+                VALUES (@email, @password, @first_name, @last_name, @phone, @company_id, @breeder_id)
             `);
 
         res.status(201).json({ message: 'User created successfully' });
@@ -92,6 +92,7 @@ router.post('/login', async (req, res) => {
                 email: user.email,
                 first_name: user.first_name,
                 last_name: user.last_name,
+                phone: user.phone,
                 role_id: user.role_id,
                 company_id: user.company_id,
                 breeder_id: user.breeder_id
@@ -99,6 +100,71 @@ router.post('/login', async (req, res) => {
         });
     } catch (err) {
         console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// GET /api/users/company/:companyId → haal alle users van een specifiek bedrijf op
+router.get('/company/:companyId', async (req, res) => {
+    const { companyId } = req.params;
+
+    try {
+        const pool = await poolPromise;
+
+        const result = await pool
+            .request()
+            .input('companyId', sql.UniqueIdentifier, companyId) // Gebruik UniqueIdentifier als company_id een GUID is
+            .query('SELECT id, email, first_name, last_name, phone FROM users WHERE company_id = @companyId');
+
+        res.status(200).json(result.recordset);
+    } catch (err) {
+        console.error('❌ Error fetching users by company:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const pool = await poolPromise;
+
+        // Verwijder gebruiker op basis van id
+        await pool
+            .request()
+            .input('id', sql.UniqueIdentifier, id)
+            .query('DELETE FROM users WHERE id = @id');
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (err) {
+        console.error('❌ Error deleting user:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// In je backend - users.js
+router.put('/:id', async (req, res) => {
+    const userId = req.params.id;
+    const userData = req.body;
+
+    try {
+
+        const pool = await poolPromise;
+
+        // Zorg ervoor dat je het juiste datatype gebruikt voor UUID's
+        const result = await pool.request()
+            .input('id', sql.UniqueIdentifier, userId)  // Gebruik UniqueIdentifier voor de UUID
+            .input('firstName', sql.NVarChar, userData.first_name)
+            .input('lastName', sql.NVarChar, userData.last_name)
+            .input('email', sql.NVarChar, userData.email)
+            .query(`
+                UPDATE users 
+                SET first_name = @firstName, last_name = @lastName, email = @email
+                WHERE id = @id
+            `);
+        
+        res.status(200).json({ message: 'User updated successfully' });
+    } catch (err) {
+        console.error('❌ Error updating user:', err);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
