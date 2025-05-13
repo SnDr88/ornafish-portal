@@ -5,7 +5,9 @@
         <div class="mx-auto w-full max-w-80 sm:mx-0 sm:w-80">
             <!-- Logo -->
             <div class="w-56 mx-auto">
+                <a routerLink="/sign-in">
                 <img src="images/logo/ornafish-logo.png" />
+                </a>
             </div>
 
             <!-- Alert -->
@@ -25,7 +27,7 @@
             <form class="mt-8" [formGroup]="signInForm" #signInNgForm="ngForm">
                 <!-- Email field -->
                 <mat-form-field class="w-full" [hideRequiredMarker]="true">
-                    <mat-label>Email address</mat-label>
+                    <mat-label>Email address TEST</mat-label>
                     <input id="email" matInput [formControlName]="'email'" />
                   </mat-form-field>
 
