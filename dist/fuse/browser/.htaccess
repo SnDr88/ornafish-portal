@@ -17,6 +17,3 @@
     Header set Expires 0
   </IfModule>
 </FilesMatch>
-
-AddType image/svg+xml .svg
-AddType image/svg+xml .svgz
