@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["dialog.component.ts"],
-  "sourcesContent": ["\n            .fuse-confirmation-dialog-panel {\n                @screen md {\n                    @apply w-128;\n                }\n\n                .mat-mdc-dialog-container {\n                    .mat-mdc-dialog-surface {\n                        padding: 0 !important;\n                    }\n                }\n            }\n        "],
-  "mappings": "AAEgB,OAAA,CAAA,SAAA,EAAA,OACI,CAAA,+BAAA,MAAA,KAAA,CACpB,CAGoB,CAJA,+BAIA,CAAA,yBAAA,CAAA,uBALJ,QAMQ,WADxB",
-  "names": []
-}

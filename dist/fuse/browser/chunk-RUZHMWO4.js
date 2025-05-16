@@ -1,2 +1,0 @@
-import{i as r}from"./chunk-E3YJZRNQ.js";import{p as s}from"./chunk-2U7DS6UV.js";import{ha as o,yb as i}from"./chunk-HR7VSKI6.js";var c=[],n=(()=>{class t{static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275mod=i({type:t})}static{this.\u0275inj=o({imports:[r.forChild(c),r]})}}return t})();var p=(()=>{class t{static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275mod=i({type:t})}static{this.\u0275inj=o({imports:[s,n]})}}return t})();export{p as UsersModule};
-//# sourceMappingURL=chunk-RUZHMWO4.js.map

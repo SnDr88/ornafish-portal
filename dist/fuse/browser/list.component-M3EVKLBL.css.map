@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["list.component.ts"],
-  "sourcesContent": ["\n            .inventory-grid {\n                grid-template-columns: 48px auto 40px;\n\n                @screen sm {\n                    grid-template-columns: 48px auto 112px 72px;\n                }\n\n                @screen md {\n                    grid-template-columns: 48px 112px auto 112px 72px;\n                }\n\n                @screen lg {\n                    grid-template-columns: 48px 112px auto 112px 96px 96px 72px;\n                }\n            }\n        "],
-  "mappings": "AACY,CAAA,eACI,sBAAA,KAAA,KAAA,IAAhB,CAEgB,OAAA,CAAA,SAAA,EAAA,OAHJ,CAAA,eAIQ,sBAAA,KAAA,KAAA,MAAA,IAClB,CACF,CACgB,OAAA,CAAA,SAAA,EAAA,OAPJ,CAAA,eAQQ,sBAAA,KAAA,MAAA,KAAA,MAAA,IAElB,CACF,CAAgB,OAAA,CAAA,SAAA,EAAA,QAXJ,CAAA,eAYQ,sBAAA,KAAA,MAAA,KAAA,MAAA,KAAA,KAAA,IAGlB,CACF",
-  "names": []
-}

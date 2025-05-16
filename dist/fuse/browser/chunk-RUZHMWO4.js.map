@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/pages/crm/users/users-routing.module.ts", "src/app/pages/crm/users/users.module.ts"],
-  "sourcesContent": ["import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\n\nconst routes: Routes = [];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule]\n})\nexport class UsersRoutingModule { }\n", "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { UsersRoutingModule } from './users-routing.module';\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    UsersRoutingModule\n  ]\n})\nexport class UsersModule { }\n"],
-  "mappings": "iIAGA,IAAMA,EAAiB,CAAA,EAMVC,GAAkB,IAAA,CAAzB,MAAOA,CAAkB,iDAAlBA,EAAkB,CAAA,+BAAlBA,CAAkB,CAAA,CAAA,mCAHnBC,EAAaC,SAASH,CAAM,EAC5BE,CAAY,CAAA,CAAA,CAAA,SAEXD,CAAkB,GAAA,ECI/B,IAAaG,GAAW,IAAA,CAAlB,MAAOA,CAAW,iDAAXA,EAAW,CAAA,+BAAXA,CAAW,CAAA,CAAA,mCAJpBC,EACAC,CAAkB,CAAA,CAAA,CAAA,SAGTF,CAAW,GAAA",
-  "names": ["routes", "UsersRoutingModule", "RouterModule", "forChild", "UsersModule", "CommonModule", "UsersRoutingModule"]
-}

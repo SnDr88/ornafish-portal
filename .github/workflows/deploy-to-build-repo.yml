@@ -24,11 +24,16 @@ jobs:
 
       - name: Build Angular app
         run: |
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "🧪 Branch detected: $GITHUB_REF_NAME"
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            echo "🔧 Building for production..."
             npm run build:prod
           else
+            echo "🔧 Building for dev..."
             npm run build:dev
           fi
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
 
       - name: Push build to deploy repo
         run: |

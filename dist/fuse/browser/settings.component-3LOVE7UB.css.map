@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["settings.component.ts"],
-  "sourcesContent": ["\n            settings {\n                position: static;\n                display: block;\n                flex: none;\n                width: auto;\n            }\n\n            @media (screen and min-width: 1280px) {\n                empty-layout + settings .settings-cog {\n                    right: 0 !important;\n                }\n            }\n        "],
-  "mappings": "AACY,SACI,SAAA,OACA,QAAA,MACA,KAAA,KACA,MAAA,KAGJ,OAAA,CAAA,SAAA,EAAA,QACI,YAAA,CAAA,SAAA,CAAA,aACI,MAAA",
-  "names": []
-}
