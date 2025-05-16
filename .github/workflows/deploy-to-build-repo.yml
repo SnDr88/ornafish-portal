@@ -27,7 +27,7 @@ jobs:
           echo "🧪 Branch detected: $GITHUB_REF_NAME"
           if [ "$GITHUB_REF_NAME" = "main" ]; then
             echo "🔧 Building for production..."
-            npm run build:prod
+            npm run build:production
           else
             echo "🔧 Building for dev..."
             npm run build:dev
