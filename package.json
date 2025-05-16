@@ -9,10 +9,11 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
-        "build:staging": "ng build --configuration=staging",
-        "watch": "ng build --watch --configuration development",
+        "build:dev": "ng build --configuration=dev",
+        "build:prod": "ng build --configuration=production",
+        "watch": "ng build --watch --configuration=dev",
         "test": "ng test"
-    },
+        },
     "dependencies": {
         "@angular/animations": "19.0.5",
         "@angular/cdk": "19.0.4",

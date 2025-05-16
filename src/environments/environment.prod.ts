@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.ornafish.com'
+  apiUrl: 'https://api.ornafish.com'
 };
